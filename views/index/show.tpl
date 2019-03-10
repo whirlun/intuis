@@ -1,1 +1,0 @@
-/Users/kafuuchino/Documents/hdchina-go/src/hdchina/views/index/show.tpl
