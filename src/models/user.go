@@ -91,14 +91,14 @@ func RegisterUser(name string, password string, email string, code string) error
 
 func GetUserPageSetting(username string) (int, error) {
 	o := orm.NewOrm()
-	u := modeldef.User{Name:username}
-	err := o.Read(&u,"Name")
+	u := modeldef.User{Name: username}
+	err := o.Read(&u, "Name")
 	if err == orm.ErrNoRows {
 		return -1, errors.New("invalidusername")
 	} else if err != nil {
 		return -1, errors.New("databaseerror")
 	} else {
-		return u.MainSiteSettings.SeedPerPage,nil
+		return u.MainSiteSettings.SeedPerPage, nil
 	}
 }
 
@@ -163,4 +163,38 @@ func ChangePMSettings(username string, settings modeldef.UserPmSettings) error {
 		o.Commit()
 		return nil
 	}
+}
+
+func GetLoves(username string) (map[string]int64, error) {
+	o := orm.NewOrm()
+	var receivers []struct {
+		Username string
+		Count    int64
+	}
+	_, err := o.Raw("SELECT receiver, count FROM love WHERE operator = " + username + " FORCE INDEX(receiver) ORDER BY count DESC LIMIT 3").QueryRows(&receivers)
+	if err != nil {
+		return nil, err
+	}
+	result := make(map[string]int64)
+	for _, r := range receivers {
+		result[r.Username] = r.Count
+	}
+	return result, nil
+}
+
+func GetBeloves(username string) (map[string]int64, error) {
+	o := orm.NewOrm()
+	var operators []struct {
+		Username string
+		Count    int64
+	}
+	_, err := o.Raw("SELECT operator, count FROM love WHERE receiver = " + username + " FORCE INDEX(operator) ORDER BY count DESC LIMIT 3").QueryRows(&operators)
+	if err != nil {
+		return nil, err
+	}
+	result := make(map[string]int64)
+	for _, o := range operators {
+		result[o.Username] = o.Count
+	}
+	return result, nil
 }

@@ -4,6 +4,6 @@ type UserController struct {
 	BaseController
 }
 
-func (this* UserController) Get() {
+func (this *UserController) Get() {
 
 }

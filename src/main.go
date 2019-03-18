@@ -2,11 +2,11 @@ package main
 
 import (
 	"github.com/astaxie/beego"
+	_ "github.com/astaxie/beego/session/redis"
 	"github.com/beego/i18n"
 	"models"
-	_ "routers"
 	"rediscache"
-	_ "github.com/astaxie/beego/session/redis"
+	_ "routers"
 )
 
 func main() {
@@ -14,7 +14,7 @@ func main() {
 	beego.BConfig.WebConfig.Session.SessionProviderConfig = beego.AppConfig.String("redis::addr")
 	beego.AddFuncMap("i18n", i18n.Tr)
 	beego.InsertFilter("/*", beego.BeforeRouter, CheckLoginStatus)
-	data :=models.InitRedisData()
+	data := models.InitRedisData()
 
 	rediscache.InitRedis(data)
 	/*err := orm.RunSyncdb("default", true, true)

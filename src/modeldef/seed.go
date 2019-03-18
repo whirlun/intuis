@@ -1,7 +1,12 @@
 package modeldef
 
+import (
+	"time"
+)
+
 type Seed struct {
 	Id              int
+	UploadDate      time.Time `orm:"auto_now_add;type(datetime)"`
 	Title           string
 	Subtitle        string
 	DoubanLink      string
@@ -10,10 +15,10 @@ type Seed struct {
 	Torrent         string
 	Nfo             string
 	Is3D            bool
-	Top				bool
+	Top             bool
 	ContentImage    string
 	Locked          bool
-	FreeSetting     string  //free status:all,normal,free,2xfree,2x,50%,50%free,30%
+	FreeSetting     string           //free status:all,normal,free,2xfree,2x,50%,50%free,30%
 	Category        *Category        `orm:"rel(fk)"`
 	AudioEncode     *AudioEncode     `orm:"rel(fk)"`
 	Format          *Format          `orm:"rel(fk)"`
@@ -30,19 +35,17 @@ type Seed struct {
 }
 
 type SeedPage struct {
-	Id int
-	Title string
-	Subtitle string
-	IMDBPoint string
+	Id          int
+	Title       string
+	Subtitle    string
+	IMDBPoint   string
 	FreeSetting string
-	ReferRule string
-	Comments string
-	Datetime int64
-	Size string
-	Upload string
-	Download string
-	Completed string
-	Author string
+	ReferRule   string
+	Comments    string
+	Datetime    int64
+	Size        string
+	Upload      string
+	Download    string
+	Completed   string
+	Author      string
 }
-
-

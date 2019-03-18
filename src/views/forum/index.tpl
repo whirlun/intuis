@@ -13,6 +13,7 @@
                     <span>{{$category.Count}}</span>
                     <span>{{$category.Introduction}}</span>
                 </div></li>
+                    {{end}}
         </ul>
         </span></li>
         <li>
@@ -43,6 +44,7 @@
         <td class="index-table-content">{{$thread.ReplyNum}}</td>
         <td class="index-table-content">{{$thread.ReadNum}}</td>
         <td class="index-table-content">{{$thread.LastActivity}}</td>
+        {{end}}
         </tbody>
     </table>
 </div>
