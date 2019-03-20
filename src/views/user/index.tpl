@@ -95,5 +95,23 @@
                     </div>
                 </div>
         </div>
+            <div id="activity">
+                <div class="row">
+                    <ul class="col-md-2 col-md-offset-2">
+                        <li>
+                            <a href="user/{{.User.Username}}/activity">{{i18n .Lang "all"}}</a>
+                            <a href="user/{{.User.Username}}/activity/thread">{{i18n .Lang "thread"}}</a>
+                            <a href="user/{{.User.Username}}/activity/reply">{{i18n .Lang "reply"}}</a>
+                            <a href="user/{{.User.Username}}/activity/love">{{i18n .Lang "lovesgiven"}}</a>
+                            <a href="user/{{.User.Username}}/activity/star">{{i18n .Lang "star"}}</a>
+                        </li>
+                    </ul>
+                    <div class="activity-panel">
+                        <ul>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
 {{template  "layout/footer.tpl" .}}

@@ -9,6 +9,8 @@ type Thread struct {
 	LastReplyTime int64
 	Reply         int64
 	Read          int64
+	Love          int64
+	Star          int64
 	Pinned        bool
 	Locked        bool
 	Category      *ForumCategory `orm:"rel(fk)"`
